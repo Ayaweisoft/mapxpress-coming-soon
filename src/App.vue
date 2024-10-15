@@ -58,9 +58,8 @@ useHead({
     <RouterView/>
     <notifications/>
     <div class="border-t">
-      <footer
-          class="py-5 md:px-16 m-auto w-full max-w-[1200px] text-sm flex items-center justify-center md:justify-between flex-wrap gap-4">
-        <div class="flex-wrap md:order-1">
+      <footer class="py-5 md:px-16 m-auto w-full max-w-[1200px] text-sm flex items-center justify-center md:justify-between flex-wrap gap-4">
+        <div class="flex-wrap sm:order-1">
           <div class="mb-3 text-center hidden md:block">Contact us on:</div>
           <div class="flex gap-x-5 justify-center">
             <a :href="social.url" target="_blank" v-for="(social, i) in socials" :key="i" :title="social.title"
@@ -69,7 +68,7 @@ useHead({
             </a>
           </div>
         </div>
-        <div class="text-center md:text-left">&copy; Mapxpress Ltd. <br/>Designed by:
+        <div class="text-center sm:text-left">&copy; Mapxpress Ltd. <br/>Designed by:
           <a class="underline" href="https://zebitech.com" target="_blank">Zebitech Global Services Ltd</a>.
         </div>
       </footer>

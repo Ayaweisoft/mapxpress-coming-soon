@@ -4,16 +4,14 @@ import {Notifications} from "@kyvg/vue3-notification";
 
 import IconFacebook from "@/components/icons/IconFacebook.vue";
 import IconInstagram from "@/components/icons/IconInstagram.vue";
-import IconX from "@/components/icons/IconX.vue";
 import {useHead} from "@vueuse/head";
 import IconWhatsApp from "@/components/icons/IconWhatsApp.vue";
 import IconLogo from "@/components/icons/IconLogo.vue";
 
 const socials = [
-  {title: 'WhatsApp', icon: IconWhatsApp, url: '#'},
-  {title: 'Instagram', icon: IconInstagram, url: '#'},
-  {title: 'Facebook', icon: IconFacebook, url: '#'},
-  {title: 'X', icon: IconX, url: '#'},
+  {title: 'WhatsApp', icon: IconWhatsApp, url: 'https://api.whatsapp.com/send?phone=2348068270783'},
+  {title: 'Instagram', icon: IconInstagram, url: 'https://www.instagram.com/map.xpress/profilecard/'},
+  {title: 'Facebook', icon: IconFacebook, url: 'https://www.facebook.com/Maplg247?mibextid=ZbWKwL'},
 ];
 
 useHead({
@@ -71,7 +69,7 @@ useHead({
             </a>
           </div>
         </div>
-        <div>&copy; Amazing Website. Designed by:
+        <div class="text-center md:text-left">&copy; Mapxpress Ltd. <br/>Designed by:
           <a class="underline" href="https://zebitech.com" target="_blank">Zebitech Global Services Ltd</a>.
         </div>
       </footer>

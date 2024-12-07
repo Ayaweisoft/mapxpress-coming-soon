@@ -33,7 +33,6 @@ useHead({
 })
 
 </script>
-
 <template>
   <div class="flex flex-col w-full min-h-screen">
     <div class="border-b">

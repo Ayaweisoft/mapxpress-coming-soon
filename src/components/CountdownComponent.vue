@@ -11,24 +11,56 @@ export interface ICountDown {
 
 const countDown = ref<ICountDown>({days: 0, hours: 0, minutes: 0, seconds: 0});
 
-const props = defineProps<{ dueDate: Date; }>()
+const props = defineProps<{ day: string | number; month: string | number; year: string | number }>();
 
 onMounted(() => {
-  const timerInterval = setInterval(() => {
-    const today = new Date();
-    const diff = Date.parse(props.dueDate.toISOString()) - Date.parse(today.toISOString());
 
-    if (diff <= 0) {
+  const dueDate = createDate(props.day, props.month, props.year);
+
+  if (isNaN(dueDate.getTime())) {
+    console.error("Invalid dueDate format");
+    return;
+  }
+
+  // Initialize the countdown values
+  const now = new Date();
+  let remainingSeconds = Math.floor((dueDate.getTime() - now.getTime()) / 1000);
+
+  if (remainingSeconds <= 0) {
+    return;
+  }
+
+  // Calculate initial countdown
+  updateCountdown(remainingSeconds);
+
+  const timerInterval = setInterval(() => {
+    if (remainingSeconds <= 0) {
       clearInterval(timerInterval);
       return;
     }
 
-    countDown.value.days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    countDown.value.hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    countDown.value.minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    countDown.value.seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    remainingSeconds--; // Decrement seconds
+    updateCountdown(remainingSeconds);
   }, 1000);
 });
+
+function createDate(day: string | number, month: string | number, year: string | number): Date {
+  // Convert inputs to numbers
+  const dayNum = parseInt(day.toString(), 10);
+  const monthNum = parseInt(month.toString(), 10) - 1; // JavaScript months are 0-based
+  const yearNum = parseInt(year.toString(), 10);
+
+  // Create and return the Date object
+  return new Date(yearNum, monthNum, dayNum);
+}
+
+// Function to update the countdown values
+const updateCountdown = (remainingSeconds: number) => {
+  countDown.value.days = Math.floor(remainingSeconds / (60 * 60 * 24));
+  countDown.value.hours = Math.floor((remainingSeconds % (60 * 60 * 24)) / (60 * 60));
+  countDown.value.minutes = Math.floor((remainingSeconds % (60 * 60)) / 60);
+  countDown.value.seconds = remainingSeconds % 60;
+};
 
 const outerCss = "flex flex-col justify-center bg-[#F5F7FA] px-3 py-2 md:px-5 md:py-3 items-center border rounded-md";
 const innerCss = "text-md md:text-xl font-semibold"

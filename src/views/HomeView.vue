@@ -15,7 +15,7 @@ import MapxpressHero from "@/assets/mapxpress-hero.png";
         <div class="text-center md:text-left">
           <div class="text-[#BC457F] font-semibold py-3">COMING SOON</div>
           <div class="text-3xl md:text-4xl font-semibold">Exciting website<br/>launch coming soon!</div>
-          <CountdownComponent day="25" month="12" year="2024"/>
+          <CountdownComponent day="01" month="01" year="2025"/>
         </div>
       </div>
     </div>
